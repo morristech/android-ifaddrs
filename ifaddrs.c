@@ -36,6 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <linux/if_packet.h> // struct sockaddr_ll
 #include <stddef.h> // offsetof
 
+
 typedef struct NetlinkList
 {
     struct NetlinkList *m_next;
