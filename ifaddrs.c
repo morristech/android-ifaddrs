@@ -193,11 +193,11 @@ static NetlinkList *getResultList(int p_socket, int p_request)
     }
 
     NetlinkList *l_list = NULL;
-    NetlinkList *l_end = NULL;
-    int l_size;
+    NetlinkList **l_current = &l_list;
     int l_done = 0;
     while(!l_done)
     {
+        int l_size;
         struct nlmsghdr *l_hdr = getNetlinkResponse(p_socket, &l_size, &l_done);
         if(!l_hdr)
         { // error
@@ -206,15 +206,8 @@ static NetlinkList *getResultList(int p_socket, int p_request)
         }
         
         NetlinkList *l_item = newListItem(l_hdr, l_size);
-        if(!l_list)
-        {
-            l_list = l_item;
-        }
-        else
-        {
-            l_end->m_next = l_item;
-        }
-        l_end = l_item;
+	*l_current = newListItem(l_hdr, l_size);
+	l_current = &(*l_current)->m_next;
     }
     return l_list;
 }
