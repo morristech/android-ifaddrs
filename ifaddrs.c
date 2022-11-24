@@ -206,8 +206,8 @@ static NetlinkList *getResultList(int p_socket, int p_request)
         }
         
         NetlinkList *l_item = newListItem(l_hdr, l_size);
-	*l_current = newListItem(l_hdr, l_size);
-	l_current = &(*l_current)->m_next;
+        *l_current = newListItem(l_hdr, l_size);
+        l_current = &(*l_current)->m_next;
     }
     return l_list;
 }
